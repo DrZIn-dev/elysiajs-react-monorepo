@@ -1,16 +1,15 @@
-import { edenTreaty } from "@elysiajs/eden";
-import type { App } from "api";
 import { useState } from "react";
 import "./App.css";
 import reactLogo from "./assets/react.svg";
+import { api } from "./services/api";
 import viteLogo from "/vite.svg";
+
 function App() {
   const [count, setCount] = useState(0);
 
-  const api = edenTreaty<App>("http://localhost:3000");
-
-  const { data } = api.hello.get();
-  console.log("data", data);
+  api.hello.get().then((res) => {
+    console.log("data", res.data);
+  });
 
   return (
     <>
